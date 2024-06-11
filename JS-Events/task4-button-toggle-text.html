@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4: Button Toggle Text</title>
+</head>
+<body>
+    <section class="preview"></section>
+    <button class="off">Machine is off</button>
+    <script>
+        const btn = document.querySelector('.off');
+        btn.addEventListener('click', () => {
+            if (btn.textContent === 'Machine is off') {
+                btn.textContent = 'Machine is On';
+            } else if (btn.textContent === 'Machine is On') {
+                btn.textContent = 'Machine is off';
+            }
+        });
+        btn.style.backgroundColor = 'black';
+        btn.style.color = 'white';
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5: Move Circle with Keys</title>
+</head>
+<body>
+    <section class="preview"></section>
+    <canvas width="480" height="320" tabindex="0"></canvas>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+        function drawCircle(x, y, size) {
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.fillStyle = 'black';
+            ctx.arc(x, y, size, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+        let x = 50;
+        let y = 50;
+        const size = 30;
+        drawCircle(x, y, size);
+        window.addEventListener('keydown', (event) => {
+            switch (event.key) {
+                case 'a':
+                    x -= 5;
+                    break;
+                case 'd':
+                    x += 5;
+                    break;
+                case 'w':
+                    y -= 5;
+                    break;
+                case 's':
+                    y += 5;
+                    break;
+            }
+            drawCircle(x, y, size);
+        });
+    </script>
+</body>
+</html>
