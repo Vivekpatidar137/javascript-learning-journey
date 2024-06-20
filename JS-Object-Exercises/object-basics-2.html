@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Object Basics 2</title>
+
+    <style>
+      p {
+        color: purple;
+        margin: 0.5em 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="preview"></section>
+
+    <script>
+      let bandInfo;
+
+      // Add your code here
+      const band = {
+        name: 'Nirvana',
+        nationality: 'American',
+        genre: 'alternative rock',
+        members: 3,
+        formed: 1987,
+        split: 1994,
+        albums: [
+          {
+            name: 'Nevermind',
+            released: 1991
+          },
+          {
+            name: 'In Utero',
+            released: 1993
+          }
+        ]
+      };
+
+      bandInfo = `The band ${band.name} is an ${band.nationality} band that was active from ${band.formed} to ${band.split}. They played ${band.genre} and their first two albums were ${band.albums[0].name} released in ${band.albums[0].released} and ${band.albums[1].name} released in ${band.albums[1].released}.`;
+
+      // Don't edit the code below here!
+      const section = document.querySelector('section');
+      let para1 = document.createElement('p');
+      para1.textContent = bandInfo;
+      section.appendChild(para1);
+    </script>
+  </body>
+</html>
