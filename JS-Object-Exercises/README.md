@@ -22,6 +22,24 @@ This folder contains exercises focused on understanding and manipulating JavaScr
    - File: `oojs-1.html`
    - Description: Introduction to creating classes and objects using JavaScript's `class` syntax. Includes inheritance and method overriding.
 
+5. **Bouncing Balls Example**
+
+⭐-File: bouncing-balls.html-
+⭐ Description: Demonstrates object-oriented programming with interactive graphics. Features bouncing balls and an evil circle that interacts with the balls. The balls change color upon collision, and the evil circle removes balls upon contact.
+Getting Started
+To run these exercises, simply open the corresponding HTML file in your web browser. Each exercise contains embedded JavaScript to be executed in the browser.
+
+Instructions for Bouncing Balls Example
+⭐ Open: bouncing-balls.html in your web browser.
+⭐ Canvas Display: The canvas will display multiple colored balls bouncing around.
+⭐ Ball Count: The "Ball count" text shows the number of active balls.
+⭐ Evil Circle Controls: Use the 'W', 'A', 'S', and 'D' keys to move the evil circle:
+⭐ W: Move up
+⭐ A: Move left
+⭐ S: Move down
+⭐ D: Move right
+
+
 ## Getting Started
 
 To run these exercises, simply open the corresponding HTML file in your web browser. Each exercise contains embedded JavaScript to be executed in the browser.
