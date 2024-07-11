@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas Particle Effects</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Canvas element to draw particles -->
+    <canvas id="canvas"></canvas>
+
+    <script>
+      // Get the canvas element and its 2D drawing context
+      const canvas = document.querySelector("canvas");
+      const ctx = canvas.getContext("2d");
+
+      // Set the canvas size to the window size
+      canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth;
+
+      // Set the background color of the canvas
+      canvas.style.backgroundColor = "black";
+
+      // Array to store all particles
+      const particlesArray = [];
+      // Variable to track the hue for color changes
+      let hue = 0;
+
+      // Update canvas size when the window is resized
+      window.addEventListener("resize", function () {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+
+      // Object to store the mouse coordinates
+      const mouse = {
+        x: undefined,
+        y: undefined,
+      };
+
+      // Add event listener for mouse clicks to create particles
+      canvas.addEventListener("click", function (event) {
+        mouse.x = event.x;
+        mouse.y = event.y;
+
+        for (let i = 0; i < 10; i++) {
+          particlesArray.push(new Particle());
+        }
+      });
+
+      // Add event listener for mouse movements to create particles
+      canvas.addEventListener("mousemove", function (event) {
+        mouse.x = event.x;
+        mouse.y = event.y;
+
+        for (let i = 0; i < 5; i++) {
+          particlesArray.push(new Particle());
+        }
+      });
+
+      // Particle class to define particle properties and behaviors
+      class Particle {
+        constructor() {
+          // Set the initial position of the particle to the mouse coordinates
+          this.x = mouse.x;
+          this.y = mouse.y;
+
+          // Set random size and speed for the particle
+          this.size = Math.random() * 15 + 1;
+          this.speedX = Math.random() * 3 - 1.5;
+          this.speedY = Math.random() * 3 - 1.5;
+          // Set the color using HSL format
+          this.color = "hsl(" + hue + ", 100% , 50%)";
+        }
+
+        // Update the particle's position and size
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+
+          if (this.size > 0.2) this.size -= 0.1;
+        }
+
+        // Draw the particle on the canvas
+        draw() {
+          ctx.fillStyle = this.color;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // Function to handle and update all particles
+      function handleParticles() {
+        for (let i = 0; i < particlesArray.length; i++) {
+          particlesArray[i].update();
+          particlesArray[i].draw();
+
+          // Draw lines between particles that are close to each other
+          for (let j = i; j < particlesArray.length; j++) {
+            const dx = particlesArray[i].x - particlesArray[j].x;
+            const dy = particlesArray[i].y - particlesArray[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 100) {
+              ctx.beginPath();
+              ctx.strokeStyle = particlesArray[i].color;
+              ctx.lineWidth = 0.2;
+              ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+              ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+              ctx.stroke();
+            }
+          }
+
+          // Remove particles that are too small
+          if (particlesArray[i].size < 0.3) {
+            particlesArray.splice(i, 1);
+            i--;
+          }
+        }
+      }
+
+      // Animation loop to continuously update and draw particles
+      function animate() {
+        // Clear the canvas for the next frame
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Update and draw particles
+        handleParticles();
+
+        // Increment the hue for color changes
+        hue += 5;
+
+        // Request the next animation frame
+        requestAnimationFrame(animate);
+      }
+
+      // Start the animation loop
+      animate();
+    </script>
+  </body>
+</html>
