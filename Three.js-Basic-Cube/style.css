@@ -1,0 +1,20 @@
+/* style.css */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000; 
+  }
+  
+  canvas {
+    display: block;
+  }
+  
