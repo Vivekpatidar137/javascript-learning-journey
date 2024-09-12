@@ -1,24 +1,35 @@
+/* Reset and Box Sizing */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Main Game Wrapper */
 #wrapper {
-  border: 5px solid black;
-  width: 1280px;
+  border: 5px solid #333; /* Softer black for a modern look */
+  width: 90vw; /* Responsive width */
+  max-width: 1280px;
   height: 720px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   overflow: hidden;
+  border-radius: 15px; /* Rounded corners for a softer appearance */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+  background: #e9f1f7; /* Light background to blend well with the theme */
 }
 
+/* Canvas Background */
 canvas {
-  background: url("owlbear/background.png");
+  background: url("owlbear/background.png") no-repeat center center;
+  background-size: cover; /* Ensures the background image covers the canvas */
+  display: block; /* Removes inline space */
+  border-radius: 10px; /* Match the wrapper's rounded corners */
 }
 
+/* Overlay Positioning */
 #overlay {
   position: absolute;
   top: 50%;
@@ -27,24 +38,29 @@ canvas {
   pointer-events: none;
 }
 
+/* Decorative Leaves - Left */
 #leaves_left {
   position: absolute;
   top: 50px;
   left: -100px;
-  transition: 0.3s;
-  animation: wobble ease-in-out 1.5s infinite;
+  transition: all 0.3s ease-in-out;
+  animation: wobble 1.5s ease-in-out infinite;
   pointer-events: none;
+  z-index: 1; /* Ensures leaves are above other elements */
 }
 
+/* Decorative Leaves - Right */
 #leaves_right {
   position: absolute;
   top: 50px;
   right: -100px;
-  transition: 0.2s;
-  animation: wobble ease-in-out 1.6s infinite;
+  transition: all 0.2s ease-in-out;
+  animation: wobble 1.6s ease-in-out infinite;
   pointer-events: none;
+  z-index: 1;
 }
 
+/* Hover Effects */
 canvas:hover ~ #leaves_left {
   left: -150px;
   transform: rotate(15deg);
@@ -52,21 +68,20 @@ canvas:hover ~ #leaves_left {
 
 canvas:hover ~ #leaves_right {
   right: -180px;
-  transform: rotate(15deg);
+  transform: rotate(-15deg);
 }
 
+/* Wobble Animation for Leaves */
 @keyframes wobble {
-  0% {
+  0%, 100% {
     top: 50px;
   }
   50% {
     top: 56px;
   }
-  100% {
-    top: 50px;
-  }
 }
 
+/* Hiding Additional Elements */
 #owlbear,
 #bush,
 #plant,
